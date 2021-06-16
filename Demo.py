@@ -35,7 +35,7 @@ class ImageWidget(QWidget):
     def show_images_list(self):  # 加载图像列表
         for i in range(self.hbox.count()):  # 每次加载先清空内容，避免layout里堆积label
             self.hbox.itemAt(i).widget().deleteLater()
-        # 设置分段显示图像，每max_num个一段
+        # 设置分段显示图像，每col个一段
         group_num = self.group_num
         start = 0
         end = self.col
@@ -75,7 +75,7 @@ class ImageWidget(QWidget):
         flag = len(self.list_files)
         if self.group_num == 1 and num == -1:  # 到首页时停止上翻
             QMessageBox.about(self, "Remind", "This is the first page!")
-        elif (self.group_num == math.ceil(flag/self.col) and num == 1) or flag==0:  # 到末页页时停止下翻
+        elif (self.group_num == math.ceil(flag/self.col) and num == 1) or flag==0:  # 到末页时停止下翻
             QMessageBox.about(self, "Remind", "No more image! ")
         else:
             self.group_num +=  num  # 翻页
