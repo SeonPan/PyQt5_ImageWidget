@@ -61,14 +61,12 @@ class ImageWidget(QWidget):
                 pix = QPixmap(path).scaled(width-2*self.col, int(pix.height()*width/pix.width())-4)
             label = MyLabel(index)
             label.setPixmap(pix)  # 加载图片
-            label.setFixedWidth(int(self.w / self.col)-5)
             self.hbox.addWidget(label)   # 在水平布局中添加自定义label
             label.signal_order.connect(self.choose_image)  # 绑定自定义label点击信号
             count += 1
         if not count==self.col:
             for i in range(self.col - count):
                 label = QLabel()
-                label.setFixedWidth(int(self.w / self.col))
                 self.hbox.addWidget(label)  # 在水平布局中添加空label补位
 
     def turn_page(self, num):  # 图像列表翻页
